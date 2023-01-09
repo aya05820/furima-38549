@@ -13,46 +13,43 @@
 | last_name_kana        | string | null: false               |
 | birth_date            | date   | null: false               |
 
-
 ### Association
 
-- has_many :item_info
+- has_many :item_infos
 - has_many :purchase_records
 - has_many :comments
 
 
 ## commentsテーブル
+
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | comment         | string     | null: false                    |
 | user            | references | null: false, foreign_key: true |
 
-
-
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 
 
-## item_info テーブル
+## item_infos テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| item_name       | text       | null: false                    |
-| item_info       | text       | null: false                    |
-| item_image      | image      | null: false                    |
-| category        | string     | null: false, foreign_key: true |
-| status          | string     | null: false, foreign_key: true |
-| shipping_fee    | string     | null: false, foreign_key: true |
-| prefecture_from | string     | null: false, foreign_key: true |
-| deliver_date    | string     | null: false, foreign_key: true |
-| price           | string     | null: false, foreign_key: true |
-| user            | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| item_name          | string     | null: false                    |
+| item_info          | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| shipping_fee_id    | integer    | null: false                    |
+| prefecture_from_id | integer    | null: false                    |
+| deliver_date_id    | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
-### Association
+### Association    
 
-- belongs_to :users
-
+- belongs_to :user
+- has_one :purchase_record
 
 
 ##  purchase_records テーブル
@@ -64,23 +61,24 @@
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - belongs_to :item_info
-- has_one :shipping_adds　
+- has_one :shipping_add
 
 
+##  shipping_adds テーブル 
 
-##  shipping_adds テーブル
-
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| postal_code     | integar    | null: false                    |
-| prefecture      | text       | null: false                    |
-| city            | text       | null: false                    |
-| building        | text       |                                |
-| phone_number    | integar    | null: false, unique: true      |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| postal_code        | integar    | null: false                    |
+| prefecture_from_id | integer    | null: false                    |
+| city               | string     | null: false                    |
+| addresses          | string     | null: false                    |
+| building           | string     |                                |
+| phone_number       | string     | null: false                    |
+| purchase_record    | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchase_records 
+- belongs_to :purchase_record
 
