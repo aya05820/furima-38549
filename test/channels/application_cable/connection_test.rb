@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class ApplicationCable::ConnectionTest < ActionCable::Connection::TestCase
   # test "connects with cookies" do
@@ -6,6 +6,6 @@ class ApplicationCable::ConnectionTest < ActionCable::Connection::TestCase
   #
   #   connect
   #
-  #   assert_equal connection.user_id, "42"
+  #   assert_equal connection.user_id, '42'
   # end
 end
