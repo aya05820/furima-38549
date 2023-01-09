@@ -70,7 +70,7 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| postal_code        | integar    | null: false                    |
+| postal_code        | string     | null: false                    |
 | prefecture_from_id | integer    | null: false                    |
 | city               | string     | null: false                    |
 | addresses          | string     | null: false                    |
