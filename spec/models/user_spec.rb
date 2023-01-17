@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
       it "必要項目全てに値が存在すれば登録できる" do
         expect(@user).to be_valid
       end
-     end
+    end
     context "新規登録できないとき" do      
       it "nicknameが空だと登録できない" do
         @user.nickname = ""

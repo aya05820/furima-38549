@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :birth_date, presence: true
   validates :password,:password_confirmation, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
 
-  # has_many :item_infos
+  has_many :item_infos
   # has_many :purchase_records,dependent: :destroy
   # has_many :comments,dependent: :destroy
 
