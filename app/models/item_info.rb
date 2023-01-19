@@ -1,7 +1,7 @@
 class ItemInfo < ApplicationRecord
 
   belongs_to :user
-  # has_one :purchase_record
+  # has_one :purchase
   has_one_attached :image
 
 
