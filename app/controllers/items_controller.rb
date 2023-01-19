@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:edit, :show]
+  before_action :set_item, only: [:show]
 
   
   def index
@@ -20,11 +20,11 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-    unless user_signed_in? && current_user.id == @item_info.user_id
-      redirect_to action: :index
-    end
-  end
+  #def edit
+   # unless user_signed_in? && current_user.id == @item_info.user_id
+    #  redirect_to action: :index
+   # end
+  #end
 
   def show
   end
