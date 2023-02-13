@@ -3,7 +3,7 @@ FactoryBot.define do
     transient do
       person { Gimei.name }
     end
-    nickname { Faker::Name.name}
+    nickname { Faker::Name.name }
     email { Faker::Internet.free_email }
     password { 'a1' + Faker::Internet.password(min_length: 6) }
     password_confirmation { password }
@@ -14,4 +14,3 @@ FactoryBot.define do
     birth_date { Faker::Date.backward }
   end
 end
-

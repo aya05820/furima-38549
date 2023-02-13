@@ -6,7 +6,7 @@ RSpec.describe ItemInfo, type: :model do
     @item.image = fixture_file_upload('app/assets/images/star.png')
   end
   describe '商品出品機能' do
-    context'商品が出品できる場合' do
+    context '商品が出品できる場合' do
       it '必要項目全てに値が存在すれば登録できる' do
         expect(@item).to be_valid
       end
@@ -15,11 +15,11 @@ RSpec.describe ItemInfo, type: :model do
         expect(@item).to be_valid
       end
     end
-    context'商品が出品できない場合' do
+    context '商品が出品できない場合' do
       it 'ユーザー情報がない場合は登録できないこと' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
       it 'imageが空だと出品できない' do
         @item.image = nil
@@ -69,19 +69,18 @@ RSpec.describe ItemInfo, type: :model do
       it 'priceが299以下の場合は保存できない' do
         @item.price = '100'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it 'priceが10,000,000以上の場合は保存できない' do
         @item.price = '10000001'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it '販売価格は半角数字のみ保存可能であること' do
         @item.price = '１００００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
-
     end
   end
 end
