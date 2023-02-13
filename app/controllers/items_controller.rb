@@ -2,9 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
-  
   def index
-    @item_infos = ItemInfo.includes(:user).order("created_at DESC")
+    @item_infos = ItemInfo.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -21,9 +20,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @item_info.user_id
-      redirect_to action: :index
-    end
+    return if current_user.id == @item_info.user_id || @item_info.purchase_record.present?
+    redirect_to action: :index
   end
 
   def update
@@ -38,7 +36,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-   if current_user.id == @item_info.user_id
+    if current_user.id == @item_info.user_id
       @item_info.destroy
       redirect_to root_path
     else
@@ -46,21 +44,20 @@ class ItemsController < ApplicationController
     end
   end
 
-
   private
-  
+
   def item_params
-    params.require(:item_info).permit(:item_name, :item_detail, :category_id, :status_id, :shipping_fee_id, :prefecture_from_id, :deliver_date_id, :price, :image).merge(user_id: current_user.id )
+    params.require(:item_info).permit(:item_name, :item_detail, :category_id, :status_id, :shipping_fee_id, :prefecture_from_id,
+                                      :deliver_date_id, :price, :image).merge(user_id: current_user.id)
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
+    return if user_signed_in?
+
+    redirect_to action: :index
   end
 
   def set_item
     @item_info = ItemInfo.find(params[:id])
   end
-
 end
