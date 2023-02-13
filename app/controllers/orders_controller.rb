@@ -4,8 +4,7 @@ class OrdersController < ApplicationController
 
   def index
     @order_purchase = OrderPurchase.new
-    return unless current_user.id == @item_info.user_id || @item_info.purchase_record.present?
-    redirect_to root_path
+    return redirect_to root_path if current_user.id == @item_info.user_id || @item_info.purchase_record.present?
   end
 
   def create
